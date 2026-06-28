@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { authenticator } from 'otplib';
+import { generateSecret, verify, generateURI } from 'otplib';
 import qrcode from 'qrcode';
 import crypto from 'crypto';
 import User from '../models/User.js';
@@ -303,8 +303,8 @@ export const setup2FA = async (req, res) => {
     const user = await User.findById(req.body.userId || req.user?._id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    const secret = authenticator.generateSecret();
-    const otpauthUrl = authenticator.keyuri(user.email, 'HealthTrackPro', secret);
+    const secret = generateSecret();
+    const otpauthUrl = generateURI({ label: user.email, issuer: 'HealthTrackPro', secret });
     const qrDataUrl = await qrcode.toDataURL(otpauthUrl);
 
     user.twoFactorSecret = secret;
@@ -325,8 +325,8 @@ export const verify2FA = async (req, res) => {
     const user = await User.findById(req.user?._id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    const isValid = authenticator.verify({ token, secret: user.twoFactorSecret });
-    if (!isValid) return res.status(400).json({ message: 'Invalid 2FA token' });
+    const verifyResult = await verify({ token, secret: user.twoFactorSecret });
+    if (!verifyResult || !verifyResult.valid) return res.status(400).json({ message: 'Invalid 2FA token' });
 
     user.twoFactorEnabled = true;
     await user.save();
@@ -345,8 +345,8 @@ export const login2FA = async (req, res) => {
     const user = await User.findById(userId);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    const isValid = authenticator.verify({ token, secret: user.twoFactorSecret });
-    if (!isValid) return res.status(401).json({ message: 'Invalid 2FA token' });
+    const verifyResult = await verify({ token, secret: user.twoFactorSecret });
+    if (!verifyResult || !verifyResult.valid) return res.status(401).json({ message: 'Invalid 2FA token' });
 
     const accessToken = generateAccessToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
