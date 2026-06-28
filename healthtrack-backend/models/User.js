@@ -44,6 +44,31 @@ const userSchema = new mongoose.Schema({
   locationSharingEnabled: {
     type: Boolean,
     default: true
+  },
+  isVerified: {
+    type: Boolean,
+    default: false
+  },
+  verificationToken: String,
+  verificationTokenExpires: Date,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
+  twoFactorSecret: String,
+  twoFactorEnabled: {
+    type: Boolean,
+    default: false
+  },
+  otpCode: String,
+  otpExpires: Date,
+  refreshToken: String,
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
+  healthScore: {
+    type: Number,
+    default: 0
   }
 }, {
   timestamps: true

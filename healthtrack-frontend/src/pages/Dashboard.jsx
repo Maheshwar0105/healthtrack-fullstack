@@ -59,7 +59,7 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen theme-bg flex items-center justify-center">
         <div className="text-center animate-fade-in">
           <div className="relative">
             <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-600 mx-auto"></div>
@@ -72,7 +72,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
+    <div className="min-h-screen theme-bg transition-all duration-300">
       <div className="container mx-auto px-4 py-8 space-y-8">
         <div className="animate-fade-in">
           <h1 className="text-5xl font-extrabold mb-2">
@@ -134,7 +134,7 @@ const Dashboard = () => {
         )}
 
         {todayStats?.latestWeight && (
-          <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-1 rounded-2xl shadow-2xl animate-fade-in">
+          <div className="bg-gradient-to-r from-accent-from via-accent-via to-accent-to p-1 rounded-2xl shadow-2xl animate-fade-in">
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -142,7 +142,7 @@ const Dashboard = () => {
                     <span className="text-2xl">⚖️</span>
                     Latest Weight
                   </h3>
-                  <p className="text-5xl font-extrabold bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">
+                  <p className="text-5xl font-extrabold text-gradient">
                     {todayStats.latestWeight} <span className="text-2xl text-gray-600 dark:text-gray-400">kg</span>
                   </p>
                 </div>

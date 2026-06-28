@@ -1,16 +1,20 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import Entry from '../models/Entry.js';
 import User from '../models/User.js';
 
 dotenv.config();
 
 describe('Entry Location Features', () => {
+  let mongoServer;
   let testUser;
   let testEntry;
 
   beforeAll(async () => {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/healthtrack-test');
+    mongoServer = await MongoMemoryServer.create();
+    const uri = mongoServer.getUri();
+    await mongoose.connect(uri);
     
     // Create or get test user
     testUser = await User.findOne({ email: 'test@example.com' });
@@ -24,8 +28,12 @@ describe('Entry Location Features', () => {
   });
 
   afterAll(async () => {
-    await Entry.deleteMany({ user: testUser._id });
+    if (testUser) {
+      await Entry.deleteMany({ user: testUser._id });
+    }
+    await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
+    await mongoServer.stop();
   });
 
   test('should create entry with location', async () => {

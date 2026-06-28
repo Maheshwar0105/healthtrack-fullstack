@@ -30,6 +30,13 @@ export default {
           yellow: '#f59e0b',
           orange: '#f97316',
           red: '#ef4444',
+        },
+        accent: {
+          from: 'var(--theme-from)',
+          via: 'var(--theme-via)',
+          to: 'var(--theme-to)',
+          primary: 'var(--theme-primary)',
+          'primary-hover': 'var(--theme-primary-hover)',
         }
       },
       backgroundImage: {

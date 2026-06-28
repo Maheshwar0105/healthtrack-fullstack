@@ -16,6 +16,11 @@ export const ThemeProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : false;
   });
 
+  const [themeColor, setThemeColor] = useState(() => {
+    const saved = localStorage.getItem('themeColor');
+    return saved || 'purple';
+  });
+
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
     if (darkMode) {
@@ -25,12 +30,23 @@ export const ThemeProvider = ({ children }) => {
     }
   }, [darkMode]);
 
+  useEffect(() => {
+    localStorage.setItem('themeColor', themeColor);
+    const themeClasses = ['theme-purple', 'theme-blue', 'theme-green', 'theme-orange', 'theme-rose'];
+    themeClasses.forEach(cls => document.documentElement.classList.remove(cls));
+    document.documentElement.classList.add(`theme-${themeColor}`);
+  }, [themeColor]);
+
   const toggleDarkMode = () => {
     setDarkMode(prev => !prev);
   };
 
+  const changeThemeColor = (color) => {
+    setThemeColor(color);
+  };
+
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={{ darkMode, toggleDarkMode, themeColor, changeThemeColor }}>
       {children}
     </ThemeContext.Provider>
   );

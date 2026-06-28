@@ -7,6 +7,7 @@ import Register from './components/auth/Register.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Profile from './pages/Profile.jsx';
 import Goals from './pages/Goals.jsx';
+import AISuite from './pages/AISuite.jsx';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -51,6 +52,14 @@ const AppRoutes = () => {
         element={
           <PrivateRoute>
             <Goals />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/ai"
+        element={
+          <PrivateRoute>
+            <AISuite />
           </PrivateRoute>
         }
       />

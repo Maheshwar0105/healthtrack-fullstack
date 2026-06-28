@@ -94,7 +94,7 @@ const Profile = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen theme-bg flex items-center justify-center">
         <div className="text-center animate-fade-in">
           <div className="relative">
             <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-600 mx-auto"></div>
@@ -107,7 +107,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
+    <div className="min-h-screen theme-bg transition-all duration-300">
       <div className="container mx-auto px-4 py-8 space-y-8">
         <div className="animate-fade-in">
           <h1 className="text-5xl font-extrabold mb-2">
@@ -163,7 +163,7 @@ const Profile = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg transition-all"
+                  className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg transition-all"
                 />
               </div>
 
@@ -177,7 +177,7 @@ const Profile = () => {
                     name="age"
                     value={formData.age}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                    className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                   />
                 </div>
                 <div>
@@ -188,12 +188,12 @@ const Profile = () => {
                     name="gender"
                     value={formData.gender}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                    className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                   >
-                    <option value="">Select</option>
-                    <option value="male">👨 Male</option>
-                    <option value="female">👩 Female</option>
-                    <option value="other">🌈 Other</option>
+                    <option value="" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">Select</option>
+                    <option value="male" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">👨 Male</option>
+                    <option value="female" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">👩 Female</option>
+                    <option value="other" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🌈 Other</option>
                   </select>
                 </div>
               </div>
@@ -208,7 +208,7 @@ const Profile = () => {
                     name="heightCm"
                     value={formData.heightCm}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                    className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                   />
                 </div>
                 <div>
@@ -221,7 +221,7 @@ const Profile = () => {
                     name="weightKg"
                     value={formData.weightKg}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                    className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                   />
                 </div>
               </div>
@@ -234,14 +234,14 @@ const Profile = () => {
                   name="activityLevel"
                   value={formData.activityLevel}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                  className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                 >
-                  <option value="">Select</option>
-                  <option value="sedentary">🪑 Sedentary</option>
-                  <option value="lightly_active">🚶 Lightly Active</option>
-                  <option value="moderately_active">🏃 Moderately Active</option>
-                  <option value="very_active">🏋️ Very Active</option>
-                  <option value="extra_active">🔥 Extra Active</option>
+                  <option value="" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">Select</option>
+                  <option value="sedentary" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🪑 Sedentary</option>
+                  <option value="lightly_active" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🚶 Lightly Active</option>
+                  <option value="moderately_active" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🏃 Moderately Active</option>
+                  <option value="very_active" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🏋️ Very Active</option>
+                  <option value="extra_active" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🔥 Extra Active</option>
                 </select>
               </div>
 
@@ -252,7 +252,7 @@ const Profile = () => {
                     name="locationSharingEnabled"
                     checked={formData.locationSharingEnabled}
                     onChange={handleChange}
-                    className="w-5 h-5 rounded border-2 border-purple-500 focus:ring-2 focus:ring-purple-500"
+                    className="w-5 h-5 rounded border-2 border-accent-primary focus:ring-2 focus:ring-accent-primary"
                   />
                   <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
                     <span>📍</span> Enable location sharing

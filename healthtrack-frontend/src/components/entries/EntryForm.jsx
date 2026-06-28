@@ -159,11 +159,11 @@ const EntryForm = ({ entry, onSuccess, onCancel }) => {
               name="type"
               value={formData.type}
               onChange={handleChange}
-              className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+              className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
             >
-              <option value="weight">⚖️ Weight</option>
-              <option value="workout">💪 Workout</option>
-              <option value="meal">🍽️ Meal</option>
+              <option value="weight" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">⚖️ Weight</option>
+              <option value="workout" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">💪 Workout</option>
+              <option value="meal" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🍽️ Meal</option>
             </select>
           </div>
 
@@ -177,7 +177,7 @@ const EntryForm = ({ entry, onSuccess, onCancel }) => {
               value={formData.date}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+              className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
             />
           </div>
 
@@ -257,10 +257,10 @@ const EntryForm = ({ entry, onSuccess, onCancel }) => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border-2 border-green-300 dark:border-green-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                 >
-                  <option value="breakfast">🌅 Breakfast</option>
-                  <option value="lunch">☀️ Lunch</option>
-                  <option value="dinner">🌙 Dinner</option>
-                  <option value="snack">🍎 Snack</option>
+                  <option value="breakfast" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🌅 Breakfast</option>
+                  <option value="lunch" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">☀️ Lunch</option>
+                  <option value="dinner" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🌙 Dinner</option>
+                  <option value="snack" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🍎 Snack</option>
                 </select>
               </div>
               <div>
@@ -327,7 +327,7 @@ const EntryForm = ({ entry, onSuccess, onCancel }) => {
                 name="isPublic"
                 checked={formData.isPublic}
                 onChange={handleChange}
-                className="w-5 h-5 rounded border-2 border-purple-500 focus:ring-2 focus:ring-purple-500"
+                className="w-5 h-5 rounded border-2 border-accent-primary focus:ring-2 focus:ring-accent-primary"
               />
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
                 <span>🌐</span> Make this entry public/shareable

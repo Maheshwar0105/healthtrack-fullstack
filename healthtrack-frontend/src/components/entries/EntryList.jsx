@@ -90,12 +90,12 @@ const EntryList = () => {
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="px-4 py-2 border-2 border-purple-300 dark:border-purple-600 rounded-xl bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-medium focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-lg hover:shadow-xl transition-all"
+            className="px-4 py-2 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-medium focus:outline-none focus:ring-2 focus:ring-accent-primary shadow-lg hover:shadow-xl transition-all"
           >
-            <option value="all">🔍 All</option>
-            <option value="weight">⚖️ Weight</option>
-            <option value="workout">💪 Workout</option>
-            <option value="meal">🍽️ Meal</option>
+            <option value="all" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🔍 All</option>
+            <option value="weight" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">⚖️ Weight</option>
+            <option value="workout" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">💪 Workout</option>
+            <option value="meal" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">🍽️ Meal</option>
           </select>
           <button
             onClick={() => {

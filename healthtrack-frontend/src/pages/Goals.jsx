@@ -96,7 +96,7 @@ const Goals = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen theme-bg flex items-center justify-center">
         <div className="text-center animate-fade-in">
           <div className="relative">
             <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-600 mx-auto"></div>
@@ -109,7 +109,7 @@ const Goals = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
+    <div className="min-h-screen theme-bg transition-all duration-300">
       <div className="container mx-auto px-4 py-8 space-y-8">
         <div className="animate-fade-in">
           <h1 className="text-5xl font-extrabold mb-2">
@@ -149,10 +149,10 @@ const Goals = () => {
                   name="goalType"
                   value={formData.goalType}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                  className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                 >
-                  <option value="targetWeight">⚖️ Target Weight</option>
-                  <option value="weeklyWorkouts">💪 Weekly Workouts</option>
+                  <option value="targetWeight" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">⚖️ Target Weight</option>
+                  <option value="weeklyWorkouts" className="bg-white text-gray-800 dark:bg-gray-800 dark:text-gray-200">💪 Weekly Workouts</option>
                 </select>
               </div>
 
@@ -167,7 +167,7 @@ const Goals = () => {
                   value={formData.value}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                  className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                 />
               </div>
 
@@ -181,7 +181,7 @@ const Goals = () => {
                   value={formData.dueDate}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
+                  className="w-full px-4 py-3 border-2 border-accent-primary/30 dark:border-accent-primary/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-accent-primary dark:bg-gray-700 dark:text-gray-200 font-medium shadow-lg"
                 />
               </div>
 
