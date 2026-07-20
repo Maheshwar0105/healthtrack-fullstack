@@ -1,5 +1,6 @@
 import Tracker from '../models/Tracker.js';
 import crypto from 'crypto';
+import { emitLocationUpdate } from '../socket.js';
 
 export const createSession = async (req, res) => {
   try {
@@ -71,6 +72,14 @@ export const addPoint = async (req, res) => {
 
     tracker.duration = Math.floor((new Date() - tracker.startTime) / 1000);
     await tracker.save();
+
+    // Emit real-time location update to Socket.io subscribers
+    emitLocationUpdate(sessionId, {
+      point,
+      pointCount: tracker.points.length,
+      totalDistance: tracker.totalDistance,
+      duration: tracker.duration
+    });
 
     res.json({
       pointCount: tracker.points.length,
