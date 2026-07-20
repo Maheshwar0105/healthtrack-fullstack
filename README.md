@@ -8,7 +8,7 @@ HealthTrack is a premium, state-of-the-art wellness application built on the MER
 
 ```mermaid
 graph TD
-    A[React Client - Netlify] <-->|HTTPS / WSS| B[Express Server - Railway]
+    A[React Client - Netlify] <-->|HTTPS / WSS| B[Express Server - Render]
     B <-->|Mongoose| C[(MongoDB Atlas)]
     B <-->|REST API| D[Google Gemini API]
     A <-->|Direct Map Rendering| E[Mapbox SDK]
@@ -48,6 +48,7 @@ healthtrack-fullstack/
 │   ├── Dockerfile               # Production container definition
 │   └── server.js                # Entry point
 │
+├── render.yaml                  # Render Blueprint definition (automated setup)
 └── healthtrack-frontend/        # React (Vite) Single Page Application
     ├── public/                  # Static assets
     ├── src/                     # Application source code
@@ -73,7 +74,7 @@ MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/healthtrack
 JWT_SECRET=your_long_random_access_token_secret
 JWT_REFRESH_SECRET=your_long_random_refresh_token_secret
 ENABLE_SOCKETIO=true
-FRONTEND_URL=https://your-app.netlify.app
+FRONTEND_URL=https://healthtrack05.netlify.app
 MAPBOX_TOKEN=pk.eyJ1Ijo...
 GEMINI_API_KEY=AIzaSy...
 ```
@@ -81,8 +82,8 @@ GEMINI_API_KEY=AIzaSy...
 ### 🎨 Frontend Configuration (`healthtrack-frontend/.env`)
 Create a `.env` file in the frontend directory:
 ```env
-VITE_API_URL=https://your-backend-railway-url.railway.app/api
-VITE_SOCKET_URL=https://your-backend-railway-url.railway.app
+VITE_API_URL=https://your-backend-render-url.onrender.com/api
+VITE_SOCKET_URL=https://your-backend-render-url.onrender.com
 VITE_MAPBOX_TOKEN=pk.eyJ1Ijo...
 ```
 
@@ -90,12 +91,14 @@ VITE_MAPBOX_TOKEN=pk.eyJ1Ijo...
 
 ## 🚀 Deployed Hosting Guide
 
-### 1. Backend on Railway
-1. Sign up on [Railway](https://railway.app) using your GitHub account.
-2. Select **New Project** -> **Deploy from GitHub repository** -> Select `healthtrack-fullstack`.
-3. In settings, set the **Root Directory** to `healthtrack-backend`.
-4. Add all environment variables listed in the backend section above.
-5. Railway will automatically build and assign a domain (e.g., `https://your-backend.railway.app`).
+### 1. Backend on Render
+1. Sign up on [Render](https://render.com) using your GitHub account.
+2. Click **New +** -> **Blueprint**.
+3. Connect your `healthtrack-fullstack` repository.
+4. Render will read the `render.yaml` file automatically:
+   * It will create the **healthtrack-backend** web service.
+   * It will prompt you to input the environment variables (`MONGO_URI`, `FRONTEND_URL`, etc.).
+5. Click **Approve**. Render will automatically build the backend service and assign a public domain (e.g., `https://healthtrack-backend-xxxx.onrender.com`).
 
 ### 2. Frontend on Netlify
 1. Sign up on [Netlify](https://netlify.com) using your GitHub account.
@@ -104,14 +107,14 @@ VITE_MAPBOX_TOKEN=pk.eyJ1Ijo...
    * **Base Directory:** `healthtrack-frontend`
    * **Build Command:** `npm run build`
    * **Publish Directory:** `dist`
-4. Add the frontend environment variables (ensure `VITE_API_URL` uses the Railway backend URL + `/api`).
-5. Click **Deploy**. Netlify handles SPA routing fallback automatically via the provided `netlify.toml` file.
+4. Add the frontend environment variables (ensure `VITE_API_URL` uses the Render backend URL + `/api`).
+5. Click **Deploy**. Netlify handles SPA routing fallback automatically.
 
 ---
 
 ## 📡 API Documentation
 
-Interactive Swagger API docs are available at: `http://localhost:5000/api-docs` (locally) or `https://your-backend.railway.app/api-docs` (in production).
+Interactive Swagger API docs are available at: `http://localhost:5000/api-docs` (locally) or `https://your-backend-render-url.onrender.com/api-docs` (in production).
 
 ### Core Endpoints:
 | Method | Endpoint | Description | Auth Required |
@@ -129,6 +132,6 @@ Interactive Swagger API docs are available at: `http://localhost:5000/api-docs` 
 ## 🔧 Troubleshooting & Health Checks
 
 * **Health Endpoint:** Query `/api/health` to confirm server status and database connectivity.
-* **CORS Blocked:** Verify `FRONTEND_URL` in the Railway environment matches your Netlify URL *exactly* (without a trailing slash).
-* **Socket.io Connections Fail:** Ensure `ENABLE_SOCKETIO` is set to `true` on Railway and `VITE_SOCKET_URL` is set to the Railway domain in Netlify.
-* **Blank Screen on Page Refresh:** Netlify routing rules require `netlify.toml` in the frontend directory. Ensure it is pushed to your production branch.
+* **CORS Blocked:** Verify `FRONTEND_URL` in the Render environment matches your Netlify URL *exactly* (without a trailing slash, e.g., `https://healthtrack05.netlify.app`).
+* **Socket.io Connections Fail:** Ensure `ENABLE_SOCKETIO` is set to `true` on Render and `VITE_SOCKET_URL` is set to the Render domain in Netlify.
+* **Cold Starts:** On the free tier, if the backend doesn't receive a request for 15 minutes, Render puts the service to sleep. The next request can take 50 seconds to spin it back up.
